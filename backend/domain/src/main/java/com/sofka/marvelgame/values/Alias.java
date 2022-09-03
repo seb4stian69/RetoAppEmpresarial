@@ -1,4 +1,22 @@
 package com.sofka.marvelgame.values;
 
-public class Alias {
+import co.com.sofka.domain.generic.ValueObject;
+
+public class Alias implements ValueObject<String> {
+
+    private final String alias;
+
+    private Alias(String alias) {
+        this.alias = alias;
+    }
+
+    public static Alias of(String alias) {
+        return new Alias(alias);
+    }
+
+    @Override
+    public String value() {
+        return alias;
+    }
+
 }
