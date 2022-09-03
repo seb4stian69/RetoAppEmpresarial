@@ -1,1 +1,6 @@
-# RetoAppEmpresarial
+# Reto app empresarial
+- Repositorio para hacer seguimiento del reto de aplicaciones empresariales el cual consta de la abstraccion de todos los conocimientos adquiridos hasta este punto del training para converger en una solucion eficiente para la problematica planteada [Juego de cartas de marvel]
+
+## Modelado DDD
+[Link del modelo]()
+![Imagen modelado]()
