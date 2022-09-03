@@ -3,4 +3,6 @@
 
 ## Modelado DDD
 [Link del modelo]()
-![Imagen modelado]()
+
+
+![Imagen modelado](https://github.com/seb4stian69/RetoAppEmpresarial/blob/main/imagenes/ProjectMarvel-Modelado-%5BJuego%5D.png)
