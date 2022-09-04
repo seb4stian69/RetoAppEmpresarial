@@ -1,4 +1,16 @@
 package com.sofka.marvelgame.events;
 
-public class JuegoCreado {
+import co.com.sofka.domain.generic.DomainEvent;
+import com.sofka.marvelgame.values.JugadorID;
+
+public class JuegoCreado extends DomainEvent {
+    private final JugadorID jugadorPrincipal;
+    public JuegoCreado(JugadorID jugadorPrincipal) {
+        super("com.sofka.marvelgame.JuegoCreado");
+        this.jugadorPrincipal = jugadorPrincipal;
+    }
+
+    public JugadorID getJugadorPrincipal() {
+        return jugadorPrincipal;
+    }
 }
