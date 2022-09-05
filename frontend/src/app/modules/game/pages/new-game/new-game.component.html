@@ -1,0 +1,21 @@
+<h2>Lista jugadores</h2>
+
+<form id="formJugadores" [formGroup]="formJugadores" (ngSubmit)="formJugadores.valid ? submit() : false">
+
+  <select multiple name="jugadores" id="jugadoresID" formControlName="jugadores">
+
+    <option *ngFor="let jugador of jugadores" [value]="jugador.id">
+      {{ jugador.name }}
+    </option>
+
+  </select> <br><br>
+
+  <div class="error" *ngIf="formJugadores.get('jugadores')?.hasError('required')">
+    Debes seleccionar por lo menos un jugador
+  </div>
+
+  <br>
+
+</form>
+
+<button form="formJugadores" type="submit" [disabled]="formJugadores.invalid">Crear juego</button>
