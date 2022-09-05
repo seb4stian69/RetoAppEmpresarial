@@ -9,14 +9,12 @@ import lombok.Setter;
 public class Jugador extends Entity<JugadorID> {
 
     private final Alias alias;
-    private final Email email;
     private final Puntos puntos;
     private Mazo mazo;
 
-    public Jugador(JugadorID entityId, Alias alias, Email email, Puntos puntos, Mazo mazo) {
+    public Jugador(JugadorID entityId, Alias alias, Puntos puntos, Mazo mazo) {
         super(entityId);
         this.alias = alias;
-        this.email = email;
         this.puntos = puntos;
         this.mazo = mazo;
     }

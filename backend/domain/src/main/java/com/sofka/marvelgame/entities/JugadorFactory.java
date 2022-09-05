@@ -12,8 +12,8 @@ public class JugadorFactory {
     public JugadorFactory(){
         jugadores = new HashSet<>();
     }
-    public void agregarJugador(JugadorID jugadorId, Alias alias, Email email, Mazo mazo){
-        jugadores.add(new Jugador(jugadorId, alias,email,this.puntosIniciales,mazo));
+    public void agregarJugador(JugadorID jugadorId, Alias alias, Mazo mazo){
+        jugadores.add(new Jugador(jugadorId, alias, this.puntosIniciales, mazo));
     }
 
     public Set<Jugador> getJugadores() {

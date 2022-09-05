@@ -1,8 +1,10 @@
 package com.sofka.marvelgame.gateway;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Data /**/ @Getter @Setter
 public class ModelCartas {
 
     private String id;

@@ -24,7 +24,7 @@ public class Juego extends AggregateEvent<JuegoID> {
         appendChange(new JuegoCreado(uid)).apply();
         jugadorFactory.getJugadores()
                 .forEach(jugador ->
-                        appendChange(new JugadorAgregado(jugador.identity(), jugador.getEmail(), jugador.getAlias() ,jugador.getMazo()))
+                        appendChange(new JugadorAgregado(jugador.identity(), jugador.getAlias() ,jugador.getMazo()))
                 );
         subscribe(new JuegoChanged(this));
     }

@@ -15,7 +15,7 @@ public class JuegoChanged extends EventChange {
         });
         apply((JugadorAgregado event) -> {
             juego.jugadores.put(event.getJuegoId(),
-                    new Jugador(event.getJuegoId(), event.getAlias(), event.getEmail(), event.getPuntos(), event.getMazo())
+                    new Jugador(event.getJuegoId(), event.getAlias(), event.getPuntos(), event.getMazo())
             );
         });
 
