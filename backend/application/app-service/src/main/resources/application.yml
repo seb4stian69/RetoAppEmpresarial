@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: webservice
+server:
+  port: 9091

@@ -19,7 +19,8 @@ public class CrearJuegoUseCase extends UseCaseForCommand<CrearJuegoCommand>{
     private final ListaCartasServices listaDeCartaService;
 
     public CrearJuegoUseCase(ListaCartasServices listaDeCartaService) {
-        this.listaDeCartaService = listaDeCartaService;    }
+        this.listaDeCartaService = listaDeCartaService;
+    }
 
     @Override
     public Flux<DomainEvent> apply(Mono<CrearJuegoCommand> input) {
