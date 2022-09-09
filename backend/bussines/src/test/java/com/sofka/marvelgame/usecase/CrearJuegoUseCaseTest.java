@@ -31,11 +31,10 @@ class CrearJuegoUseCaseTest {
     @InjectMocks
     private CrearJuegoUseCase useaCase;
 
-
     @Test
     void crearJuego(){
-        //arrange
 
+        //arrange
         var command = new CrearJuegoCommand();
         command.setJuegoId("XXX");
         command.setJugadores(new HashMap<>());
@@ -46,28 +45,16 @@ class CrearJuegoUseCaseTest {
         when(listaDeCartasService.obtenerCartasDeMarvel()).thenReturn(history());
 
         StepVerifier.create(useaCase.apply(Mono.just(command)))
-                .expectNextMatches(new Predicate<DomainEvent>() {
-                    @Override
-                    public boolean test(DomainEvent domainEvent) {
-                        var event = (JuegoCreado) domainEvent;
-                        return "XXX".equals(event.aggregateRootId()) && "123".equals(event.getJugadorPrincipal().value());
-                    }
-                }).expectNextMatches(new Predicate<DomainEvent>() {
-                    @Override
-                    public boolean test(DomainEvent domainEvent) {
-                        var event = (JugadorAgregado) domainEvent;
-                        return "j1prueba".equals(event.getAlias());
-                    }
-                }).expectNextMatches(new Predicate<DomainEvent>() {
-                    @Override
-                    public boolean test(DomainEvent domainEvent) {
-                        var event = ( JugadorAgregado ) domainEvent;
-                        return "j2prueba".equals(event.getAlias());
-                    }
+                .expectNextMatches(domainEvent -> {
+                    var event = (JuegoCreado) domainEvent;
+                    return "XXX".equals(event.aggregateRootId()) && "123".equals(event.getJugadorPrincipal().value());
+                }).expectNextMatches(domainEvent -> {
+                    var event = (JugadorAgregado) domainEvent;
+                    return "j1prueba".equals(event.getAlias().value());
+                }).expectNextMatches(domainEvent -> {
+                    var event = ( JugadorAgregado ) domainEvent;
+                    return "j2prueba".equals(event.getAlias().value());
                 }).expectComplete().verify();
-
-
-
     }
 
     private Flux<ModelCartas> history() {

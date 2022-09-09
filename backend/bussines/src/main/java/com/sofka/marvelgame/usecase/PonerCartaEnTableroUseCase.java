@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 
 public class PonerCartaEnTableroUseCase extends UseCaseForCommand<LanzarUnaCartaCommand>{
 
+
     private final Logger log = Logger.getLogger(PonerCartaEnTableroUseCase.class.getCanonicalName());
     private final JuegoDomainEventRepository repository;
 

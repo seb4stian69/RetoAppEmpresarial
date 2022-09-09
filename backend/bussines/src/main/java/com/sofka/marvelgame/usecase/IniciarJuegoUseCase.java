@@ -5,6 +5,7 @@ import com.sofka.marvelgame.Juego;
 import com.sofka.marvelgame.commands.IniciarJuegoCommand;
 import com.sofka.marvelgame.gateway.JuegoDomainEventRepository;
 import com.sofka.marvelgame.values.JuegoID;
+import com.sofka.marvelgame.values.Ronda;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -12,8 +13,10 @@ public class IniciarJuegoUseCase extends UseCaseForCommand<IniciarJuegoCommand>{
 
     private final JuegoDomainEventRepository repository;
 
-    public IniciarJuegoUseCase(JuegoDomainEventRepository repository){
+
+    public IniciarJuegoUseCase(JuegoDomainEventRepository repository) {
         this.repository = repository;
+
     }
 
     @Override
@@ -23,7 +26,12 @@ public class IniciarJuegoUseCase extends UseCaseForCommand<IniciarJuegoCommand>{
                 .collectList()
                 .flatMapIterable(events -> {
                     var juego = Juego.from(JuegoID.of(command.getJuegoId()), events);
-                    juego.crearTablero(command.getJuegoId());
+                    var jugadoresId = juego.jugadores().keySet();
+                    var ronda = new Ronda(1, jugadoresId);
+
+                    juego.crearTablero();
+                    juego.crearRonda(ronda, 80);
+
                     return juego.getUncommittedChanges();
                 }));
     }

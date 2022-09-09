@@ -45,6 +45,12 @@ public class Juego extends AggregateEvent<JuegoID> {
         appendChange(new TableroCreado(id, jugadores.keySet())).apply();
     }
 
+    public void crearTablero(){
+        var id = new TableroID();
+        appendChange(new TableroCreado(id, jugadores.keySet())).apply();
+    }
+
+
     public void crearRonda(Ronda ronda, Integer tiempo){
         appendChange(new RondaCreada(ronda, tiempo)).apply();
     }
