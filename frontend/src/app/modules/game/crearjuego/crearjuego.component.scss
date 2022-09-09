@@ -1,0 +1,46 @@
+.crearJuego{
+  margin: 17.5vh auto;
+  width: 62%;
+  height: 65vh;
+  border-radius: .8em;
+  background-color: white;
+}
+
+.crearJuego header{
+  padding: .6em 0 .6em 0;
+  text-align: center;
+}
+
+table.GeneratedTable {
+  width: 30%;
+  margin: 2em 0 0 2em;
+  background-color: #ffffff;
+  border-collapse: collapse;
+  border-width: 1px;
+  border-color: #0d0a20;
+  border-style: solid;
+  color: #000000;
+}
+
+table.GeneratedTable td, table.GeneratedTable th {
+  border-width: 1px;
+  border-color: #0d0a20;
+  border-style: solid;
+  padding: 3px;
+}
+
+table.GeneratedTable thead {
+  background-color: #ffffff;
+}
+
+.GeneratedTable label{
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.buttonCrearJuego{
+
+  margin-top: 2em;
+  margin-left: 9em;
+
+}

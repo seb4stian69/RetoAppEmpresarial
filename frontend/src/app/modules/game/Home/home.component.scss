@@ -1,0 +1,46 @@
+.homeView{
+  margin: 17.5vh auto;
+  width: 62%;
+  height: 65vh;
+  border-radius: .8em;
+  background-color: white;
+}
+
+.homeView header{
+  padding: .6em 0 .6em 0;
+  text-align: center;
+}
+
+.homeView h3{
+  font-size: 1.3em;
+  margin-top: 3.5em;
+  text-align: center;
+}
+
+.homeView p{
+  margin-top: .8em;
+  font-size: 1.1em;
+  text-align: center;
+}
+
+.homeView button{
+
+  width: 30%;
+  height: 10%;
+  margin-top: 2em;
+  margin-bottom: 2em;
+
+}.homeView button:hover{
+  cursor: pointer;
+}
+
+.ButtonCrearJuego{
+  margin-left: 11em;
+}
+.ButtonListarJuego{
+  margin-left: 3em;
+}
+
+.homeView a{
+  margin-left: 43vh;
+}

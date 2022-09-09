@@ -1,18 +1,24 @@
+// Librerias
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './Pages/Home/home.component';
-import { LoginComponent } from './Pages/Log-in/login.component';
+import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+
+const goToLogin = () => redirectUnauthorizedTo(['']);
 
 const routes: Routes = [
 
   {
-    path: "login",
-    component: LoginComponent
+    path: "",
+    loadChildren: () =>
+          import('./modules/login/login.module').then((module) => module.LoginModule),
   },
   {
-    path: "home",
-    component: HomeComponent
-  }
+    path: "game",
+    loadChildren: () =>
+          import('./modules/game/game.module').then((module) => module.GameModule),
+    ...canActivate(goToLogin)
+  },
+
 
 ];
 

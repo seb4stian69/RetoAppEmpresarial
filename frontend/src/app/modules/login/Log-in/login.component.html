@@ -4,15 +4,15 @@
 
     <img class="fotoDocStrangeLoguin" src="../../../assets/Image/loguin/DocStrange.png" alt="Imagen del doctor strange">
 
-    <form class="formLogin">
+    <form id="formInicial" [formGroup]="formInicial" class="formLogin">
 
       <img class="logoMarvelLoguin" src="../../../assets/Image/loguin/Marvel_Logo.svg.png" alt="Logo de marvel">
 
-      <input class = "inputUsername" type="text" placeholder="Username">
-      <input class = "inputPassword" type="password" placeholder="Password">
+      <input formControlName="email" class = "inputUsername" type="text" placeholder="Username">
+      <input formControlName="password" class = "inputPassword" type="password" placeholder="Password">
 
-      <button class = "buttonLogin">Log in</button>
-      <button class = "buttonGoogle">Google</button>
+      <button class = "buttonLogin" (click)="login()" >Log in</button>
+      <button class = "buttonGoogle" (click)="google()">Google</button>
 
       <div class ="confirmateTerm" ><input type="checkbox"> <label>Aceptar terminos y condiciones</label></div>
 
