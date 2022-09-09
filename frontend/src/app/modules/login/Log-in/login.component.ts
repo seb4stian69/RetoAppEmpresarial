@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(new UsuarioInterface(this.formInicial.value.email, this.formInicial.value.password))
       .then(res =>{
         console.log(res)
-        this.router.navigate(['/gamecard']);
+        this.router.navigate(['/game']);
       })
       .catch(err => console.error(err))
   }
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     this.userService.loginWithGoogle()
     .then(res =>{
       console.log(res)
-      this.router.navigate(['/gamecard']);
+      this.router.navigate(['/game']);
     })
     .catch(err => console.error(err))
   }

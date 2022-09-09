@@ -32,7 +32,11 @@ export class HomeComponent implements OnInit {
   }
 
   goToCrearJuego(){
-    this.router.navigate(['/gamecard/crear'])
+    this.router.navigate(['/game/crear'])
+  }
+
+  goToListarJuegos(){
+    this.router.navigate(['/game/listajuegos'])
   }
 
   savePlayer(): void {
