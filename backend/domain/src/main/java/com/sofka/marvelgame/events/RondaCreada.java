@@ -8,7 +8,7 @@ public class RondaCreada extends DomainEvent {
     private final Integer tiempo;
 
     public RondaCreada(Ronda ronda, Integer tiempo) {
-        super("com.sofka.marvelgame.RondaCreada");
+        super("marvelgame.RondaCreada");
         this.ronda = ronda;
         this.tiempo = tiempo;
     }

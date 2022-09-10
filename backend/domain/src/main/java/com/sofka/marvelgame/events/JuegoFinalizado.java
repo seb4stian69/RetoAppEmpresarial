@@ -8,7 +8,7 @@ public class JuegoFinalizado extends DomainEvent {
     private final String alias;
 
     public JuegoFinalizado(JugadorID jugadorId, String alias) {
-        super("com.sofka.marvelgame.JuegoFinalizado");
+        super("marvelgame.JuegoFinalizado");
         this.jugadorId = jugadorId;
         this.alias = alias;
     }

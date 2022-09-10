@@ -11,7 +11,7 @@ public class CartasAsignadasAJugador extends DomainEvent {
     private final Set<Carta> cartasApuesta;
 
     public CartasAsignadasAJugador(JugadorID ganadorId, Integer puntos, Set<Carta> cartasApuesta) {
-        super("com.sofka.marvelgame.CartasAsignadasAJugador");
+        super("marvelgame.CartasAsignadasAJugador");
         this.ganadorId = ganadorId;
         this.puntos = puntos;
         this.cartasApuesta = cartasApuesta;

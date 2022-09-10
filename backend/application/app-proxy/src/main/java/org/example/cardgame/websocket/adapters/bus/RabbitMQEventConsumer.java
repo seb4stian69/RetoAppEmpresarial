@@ -25,11 +25,10 @@ public class RabbitMQEventConsumer {
         this.ws = ws;
     }
 
-
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(value = "proxy.handles", durable = "true"),
             exchange = @Exchange(value = ApplicationConfig.EXCHANGE, type = "topic"),
-            key = "cardgame.#"
+            key = "marvelgame.#"
     ))
     public void receivedMessage(Message<String> message) {
         var notification = Notification.from(message.getPayload());

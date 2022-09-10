@@ -12,7 +12,7 @@ public class CartaLanzada extends DomainEvent {
     private final Carta carta;
 
     public CartaLanzada(TableroID tableroId, JugadorID jugadorId, Carta carta) {
-        super("example.CartaLanzada");
+        super("marvelgame.CartaLanzada");
         this.tableroId = tableroId;
         this.jugadorId = jugadorId;
         this.carta = carta;

@@ -6,7 +6,7 @@ import com.sofka.marvelgame.values.JugadorID;
 public class JuegoCreado extends DomainEvent {
     private final JugadorID jugadorPrincipal;
     public JuegoCreado(JugadorID jugadorPrincipal) {
-        super("com.sofka.marvelgame.JuegoCreado");
+        super("marvelgame.JuegoCreado");
         this.jugadorPrincipal = jugadorPrincipal;
     }
 

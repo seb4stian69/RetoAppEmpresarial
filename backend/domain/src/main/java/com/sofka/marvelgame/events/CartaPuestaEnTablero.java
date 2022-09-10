@@ -12,7 +12,7 @@ public class CartaPuestaEnTablero extends DomainEvent {
     private final Carta carta;
 
     public CartaPuestaEnTablero(TableroID tableroId, JugadorID jugadorId, Carta carta) {
-        super("com.sofka.marvelgame.CartaPuestaEnTablero");
+        super("marvelgame.CartaPuestaEnTablero");
         this.tableroId = tableroId;
         this.jugadorId = jugadorId;
         this.carta = carta;

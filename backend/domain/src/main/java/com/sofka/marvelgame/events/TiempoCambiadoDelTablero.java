@@ -8,7 +8,7 @@ public class TiempoCambiadoDelTablero extends DomainEvent {
     private final Integer tiempo;
 
     public TiempoCambiadoDelTablero(TableroID tableroId, Integer tiempo) {
-        super("com.sofka.marvelgame.TiempoCambiadoDelTablero");
+        super("marvelgame.TiempoCambiadoDelTablero");
         this.tableroId = tableroId;
         this.tiempo = tiempo;
     }

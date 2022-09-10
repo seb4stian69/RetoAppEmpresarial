@@ -11,7 +11,7 @@ public class RondaTerminada extends DomainEvent {
     private final Set<JugadorID> jugadorIds;
 
     public RondaTerminada(TableroID tableroId, Set<JugadorID> jugadorIds) {
-        super("com.sofka.marvelgame.RondaTerminada");
+        super("marvelgame.RondaTerminada");
         this.tableroId = tableroId;
         this.jugadorIds = jugadorIds;
     }

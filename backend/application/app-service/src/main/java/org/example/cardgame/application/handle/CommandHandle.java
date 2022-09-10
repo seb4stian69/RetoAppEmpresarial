@@ -2,6 +2,7 @@ package org.example.cardgame.application.handle;
 
 import com.sofka.marvelgame.commands.CrearJuegoCommand;
 import com.sofka.marvelgame.usecase.CrearJuegoUseCase;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -22,13 +23,11 @@ public class CommandHandle {
 
     @Bean
     public RouterFunction<ServerResponse> crear(CrearJuegoUseCase usecase) {
-
         return route(
                 POST("/juego/crear").and(accept(MediaType.APPLICATION_JSON)),
                 request -> usecase.andThen(integrationHandle)
                         .apply(request.bodyToMono(CrearJuegoCommand.class))
                         .then(ServerResponse.ok().build())
-
         );
     }
 

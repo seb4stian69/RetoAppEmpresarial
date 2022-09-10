@@ -6,6 +6,7 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {getFirestore, provideFirestore } from '@angular/fire/firestore';
+import {HttpClientModule} from '@angular/common/http'
 
 // Rutas
 import { AppRoutingModule } from './app-routing.module';
@@ -13,7 +14,7 @@ import { AppComponent } from './Templates/Home/app.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,7 +23,8 @@ import { AppComponent } from './Templates/Home/app.component';
     ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    provideFirestore(()=> getFirestore())
+    provideFirestore(()=> getFirestore()),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

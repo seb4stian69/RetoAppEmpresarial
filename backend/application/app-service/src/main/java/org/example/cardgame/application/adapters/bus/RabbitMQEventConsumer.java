@@ -24,9 +24,9 @@ public class RabbitMQEventConsumer {
 
 
     @RabbitListener(bindings = @QueueBinding(
-            value = @Queue(value = "juego.handles", durable = "true"),
+            value = @Queue(value = "games.handles", durable = "true"),
             exchange = @Exchange(value = ApplicationConfig.EXCHANGE, type = "topic"),
-            key = "cardgame.#"
+            key = "marvelgame.#"
     ))
     public void receivedMessage(Message<String> message) {
         var notification = Notification.from(message.getPayload());

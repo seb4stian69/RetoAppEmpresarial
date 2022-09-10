@@ -10,7 +10,7 @@ public class JugadorAgregado extends DomainEvent {
     private final Mazo mazo;
 
     public JugadorAgregado(JugadorID identity, Alias alias, Mazo mazo) {
-        super("com.sofka.marvelgame.JugadorAgregado");
+        super("marvelgame.JugadorAgregado");
         this.identity = identity;
         this.alias = alias;
         this.mazo = mazo;

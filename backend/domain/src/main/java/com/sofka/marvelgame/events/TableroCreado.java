@@ -13,7 +13,7 @@ public class TableroCreado extends DomainEvent {
 
 
     public TableroCreado(TableroID tableroId, Set<JugadorID> jugadorIds) {
-        super("com.sofka.marvelgame.TableroCreado");
+        super("marvelgame.TableroCreado");
         this.tableroId = tableroId;
         this.jugadorIds = jugadorIds;
     }

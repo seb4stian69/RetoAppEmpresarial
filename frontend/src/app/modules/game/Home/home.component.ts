@@ -7,6 +7,7 @@ import { UserService } from 'src/app/Services/user-service.service';
 import { DbFireService } from 'src/app/Services/db-fire.service';
 import { UserDTO } from 'src/app/models/User.DTO';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -56,6 +57,12 @@ export class HomeComponent implements OnInit {
       this.listUser = users;
       console.log(users);
     });
+  }
+
+  salirApp(){
+    alert("Saldras de la app");
+    this.userService.logOut();
+    this.router.navigate([""])
   }
 
 }
