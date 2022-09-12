@@ -12,7 +12,7 @@
 }
 
 table.GeneratedTable {
-  width: 30%;
+  width: 70%;
   margin: 2em 0 0 2em;
   background-color: #ffffff;
   border-collapse: collapse;
@@ -36,6 +36,10 @@ table.GeneratedTable thead {
 .GeneratedTable label{
   margin-left: 1em;
   margin-right: 1em;
+}
+
+input{
+  margin-left: 10px;
 }
 
 .buttonCrearJuego{

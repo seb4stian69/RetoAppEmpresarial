@@ -6,8 +6,7 @@ import { HomeComponent } from './Home/home.component';
 import { CrearjuegoComponent } from './crearjuego/crearjuego.component';
 import { ListajuegosComponent } from './listajuegos/listajuegos.component';
 import { BoardComponent } from './board/board.component';
-
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +18,10 @@ import { BoardComponent } from './board/board.component';
   ],
   imports: [
     CommonModule,
-    GameRoutingModule
+    GameRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
+
 export class GameModule { }

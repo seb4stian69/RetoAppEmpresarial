@@ -35,6 +35,14 @@ export class UserService {
     return auth;
   }
 
+  getCurrentUserUid(){
+    return this.auth.currentUser?.uid;
+  }
+
+  getCurrentUserAlias(){
+    return this.auth.currentUser?.displayName;
+  }
+
   logOut() {
     return signOut(this.auth);
   }
