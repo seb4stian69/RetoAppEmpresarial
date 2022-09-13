@@ -30,8 +30,8 @@ public class QueryHandle {
     @Bean
     public RouterFunction<ServerResponse> listarJuego() {
         return RouterFunctions.route(
-                GET("/juego/listar/{uid}"),
-                request -> template.find(filterByUId(request.pathVariable("uid")), JuegoListViewModel.class, "gameview")
+                GET("/juego/listar/{id}"),
+                request -> template.find(filterByUId(request.pathVariable("id")), JuegoListViewModel.class, "gameview")
                         .collectList()
                         .flatMap(list -> ServerResponse.ok()
                                 .contentType(MediaType.APPLICATION_JSON)
@@ -39,32 +39,43 @@ public class QueryHandle {
         );
     }
 
-    @Bean
-    public RouterFunction<ServerResponse> getTablero() {
-        return RouterFunctions.route(
-                GET("/juego/{id}"),
-                request -> template.findOne(filterById(request.pathVariable("id")), TableroViewModel.class, "gameview")
-                        .flatMap(element -> ServerResponse.ok()
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .body(BodyInserters.fromPublisher(Mono.just(element), TableroViewModel.class)))
-        );
-    }
-
-    private Query filterById(String juegoId) {
-        return new Query(
-                Criteria.where("_id").is(juegoId)
-        );
-    }
 
     @Bean
     public RouterFunction<ServerResponse> mazoPorJugador() {
         return RouterFunctions.route(
-                GET("/jugador/mazo/{uid}"),
-                request -> template.find(filterByUId(request.pathVariable("uid")), MazoViewModel.class, "mazoview")
+                GET("/jugador/mazo/{juegoId}/{uid}"),
+                request -> template.find(filterByUIdJuego(request.pathVariable("juegoId"),request.pathVariable("uid")),
+                                MazoViewModel.class, "mazoview")
                         .collectList()
                         .flatMap(list -> ServerResponse.ok()
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .body(BodyInserters.fromPublisher(Flux.fromIterable(list), MazoViewModel.class)))
+        );
+    }
+
+    private Query filterByUIdJuego( String juegoId,String uid) {
+        return new Query(
+                Criteria.where("juegoId").is(juegoId).and("uid").is(uid)
+        );
+    }
+
+
+    @Bean
+    public RouterFunction<ServerResponse> tableroPorJuego(){
+        return RouterFunctions.route(
+                GET("/juego/tablero/{juegoId}"),
+                request ->template.find(filterById(request.pathVariable("juegoId")),
+                                TableroViewModel.class,"boardview")
+                        .collectList().flatMap(list -> ServerResponse.ok()
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .body(BodyInserters.fromPublisher(Flux.fromIterable(list),TableroViewModel.class)))
+        );
+    }
+
+
+    private Query filterById(String juegoId) {
+        return new Query(
+                Criteria.where("_id").is(juegoId)
         );
     }
 
@@ -73,6 +84,5 @@ public class QueryHandle {
                 Criteria.where("uid").is(uid)
         );
     }
-
 
 }

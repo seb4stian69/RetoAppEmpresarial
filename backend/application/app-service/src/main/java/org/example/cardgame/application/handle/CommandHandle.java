@@ -48,8 +48,6 @@ public class CommandHandle {
         );
     }
 
-
-
     @Bean
     public RouterFunction<ServerResponse> poner(PonerCartaEnTableroUseCase usecase) {
         return route(

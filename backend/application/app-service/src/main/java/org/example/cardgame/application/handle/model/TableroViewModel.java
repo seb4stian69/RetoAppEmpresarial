@@ -7,24 +7,15 @@ import java.util.Set;
 public class TableroViewModel {
 
     private  Tablero tablero;
-    private Integer tiempo;
     private Ronda ronda;
 
     public Ronda getRonda() {
         return ronda;
     }
-
     public void setRonda(Ronda ronda) {
         this.ronda = ronda;
     }
 
-    public void setTiempo(Integer tiempo) {
-        this.tiempo = tiempo;
-    }
-
-    public Integer getTiempo() {
-        return tiempo;
-    }
 
     public Tablero getTablero() {
         return tablero;
@@ -35,7 +26,7 @@ public class TableroViewModel {
     }
 
     public static class Tablero{
-        private String id;
+        private String tableroId;
         private Set<String> jugadores;
         private Boolean habilitado;
         private Map<String, List<MazoViewModel.Carta>> cartas;
@@ -50,7 +41,7 @@ public class TableroViewModel {
         }
 
         public String getId() {
-            return id;
+            return tableroId;
         }
 
         public void setJugadores(Set<String> jugadores) {
@@ -62,7 +53,7 @@ public class TableroViewModel {
         }
 
         public void setId(String id) {
-            this.id = id;
+            this.tableroId = id;
         }
 
 
@@ -104,5 +95,6 @@ public class TableroViewModel {
             this.numero = numero;
         }
     }
+
 
 }
