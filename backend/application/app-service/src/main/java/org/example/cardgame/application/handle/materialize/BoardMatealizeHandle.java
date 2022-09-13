@@ -28,19 +28,22 @@ public class BoardMatealizeHandle {
     }
 
     @EventListener
-
     public void handleTableroCreado(TableroCreado event) {
 
         var data = new HashMap<>();
+
+        var tablero = new Document();
+
         var jugadores = event.getJugadorIds()
                 .stream().map(Identity::value)
                 .collect(Collectors.toList());
 
         data.put("_id", event.aggregateRootId());
-        data.put("tableroId", event.getTableroId().value());
-        data.put("jugadores", jugadores);
-        data.put ("habilitado", true);
-        data.put("cartas", new HashMap<>());
+        tablero.put("tableroId", event.getTableroId().value());
+        tablero.put("jugadores", jugadores);
+        tablero.put ("habilitado", true);
+        tablero.put("cartas", new HashMap<>());
+        data.put("tablero",tablero);
 
         template.save(data, COLLECTION_VIEW).block();
 
@@ -48,18 +51,23 @@ public class BoardMatealizeHandle {
 
     @EventListener
     public void handleRondaCreda(RondaCreada event) {
+
         var data = new Update();
+
         var ronda = event.getRonda().value();
-        var documnt = new Document();
+        var rondaDoc = new Document();
+
         var jugadores = ronda.jugadores()
                 .stream().map(Identity::value)
                 .collect(Collectors.toList());
-        documnt.put("jugadores", jugadores);
-        documnt.put("numero", ronda.numero());
 
-        documnt.put("estaIniciada",event.getRonda().value().estado());
-        documnt.put("tiempo",event.getTiempo());
-        data.set("ronda", documnt);
+        rondaDoc.put("jugadores", jugadores);
+        rondaDoc.put("numero", ronda.numero());
+        rondaDoc.put("estaIniciada",event.getRonda().value().estaIniciada());
+        rondaDoc.put("tiempo",event.getTiempo());
+
+        data.set("ronda", rondaDoc);
+
         template.updateFirst(getByAggregateId(event),data, COLLECTION_VIEW).block();
 
     }
@@ -74,13 +82,10 @@ public class BoardMatealizeHandle {
 //        template.updateFirst(getByAggregateId(event),data, COLLECTION_VIEW).block();
 //    }
 
-
-
     private Query getByAggregateId(DomainEvent event) {
         return new Query(
                 Criteria.where("_id").is(event.aggregateRootId())
         );
     }
-
 
 }

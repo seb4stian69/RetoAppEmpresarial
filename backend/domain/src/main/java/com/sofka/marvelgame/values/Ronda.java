@@ -9,19 +9,19 @@ public class Ronda implements ValueObject<Ronda.Props> {
 
     private final Logger log = Logger.getLogger("Logger");
     private final Set<JugadorID> jugadores;
-    private Boolean estado;
+    private Boolean estaIniciada;
     private final Integer numero;
 
     public Ronda(Integer numero, Set<JugadorID> jugadores) {
         this.jugadores = jugadores;
         this.numero = numero;
-        this.estado = false;
+        this.estaIniciada = false;
     }
 
-    private Ronda(Set<JugadorID> jugadores, Integer numero, Boolean estado) {
+    private Ronda(Set<JugadorID> jugadores, Integer numero, Boolean estaIniciada) {
         this.jugadores = jugadores;
         this.numero = numero;
-        this.estado = estado;
+        this.estaIniciada = estaIniciada;
     }
 
     public Ronda iniciarRonda(){
@@ -49,8 +49,8 @@ public class Ronda implements ValueObject<Ronda.Props> {
                 return numero;
             }
             @Override
-            public Boolean estado() {
-                return estado;
+            public Boolean estaIniciada() {
+                return estaIniciada;
             }
         };
     }
@@ -58,7 +58,7 @@ public class Ronda implements ValueObject<Ronda.Props> {
     public interface Props {
         Set<JugadorID> jugadores();
         Integer numero();
-        Boolean estado();
+        Boolean estaIniciada();
     }
 
 }

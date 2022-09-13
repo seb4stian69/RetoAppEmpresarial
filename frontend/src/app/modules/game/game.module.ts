@@ -18,11 +18,13 @@ import { ListboxModule } from 'primeng/listbox';
     BoardComponent
   ],
   imports: [
+
     CommonModule,
     GameRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     ListboxModule
+
   ]
 })
 

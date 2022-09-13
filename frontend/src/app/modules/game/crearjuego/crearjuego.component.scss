@@ -1,9 +1,11 @@
 .crearJuego{
+
   margin: 17.5vh auto;
   width: 62%;
   height: 65vh;
   border-radius: .8em;
   background-color: white;
+
 }
 
 .crearJuego header{
@@ -11,40 +13,22 @@
   text-align: center;
 }
 
-table.GeneratedTable {
-  width: 70%;
-  margin: 2em 0 0 2em;
-  background-color: #ffffff;
-  border-collapse: collapse;
-  border-width: 1px;
-  border-color: #0d0a20;
-  border-style: solid;
-  color: #000000;
+.crearJuego form{
+  margin-top: 1.5em;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-table.GeneratedTable td, table.GeneratedTable th {
-  border-width: 1px;
-  border-color: #0d0a20;
-  border-style: solid;
-  padding: 3px;
+.crearJuego form button{
+
+  margin: 1.5em 42%;
+  width: 15%;
+  height: 2.3em;
+
 }
 
-table.GeneratedTable thead {
-  background-color: #ffffff;
-}
+.formularioCrear{
 
-.GeneratedTable label{
-  margin-left: 1em;
-  margin-right: 1em;
-}
-
-input{
-  margin-left: 10px;
-}
-
-.buttonCrearJuego{
-
-  margin-top: 2em;
-  margin-left: 9em;
+  width: 60%;
 
 }

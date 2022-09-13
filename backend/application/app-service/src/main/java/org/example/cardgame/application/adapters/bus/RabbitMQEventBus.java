@@ -24,18 +24,14 @@ public class RabbitMQEventBus implements EventBus {
 
     @Override
     public void publish(DomainEvent event) {
-
         var notification = new Notification(
                 event.getClass().getTypeName(),
                 serializer.serialize(event)
         );
-
         rabbitTemplate.convertAndSend(
                 ApplicationConfig.EXCHANGE, event.type, notification.serialize().getBytes()
         );
-
-
-
+        //applicationEventPublisher.publishEvent(event);
     }
 
     @Override

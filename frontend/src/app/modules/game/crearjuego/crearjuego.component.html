@@ -1,14 +1,27 @@
-<form class="crearJuego" [formGroup]="formInicial" (submit)="onSubmitForm()">
 
-  <p-listbox
+<div class="crearJuego" >
 
-    [multiple]="true"
-    [options]="listaUsuariosRegistrados"
-    optionLabel="alias"
-    formControlName="userCheck"
+  <header>Crear juego</header>
 
-  ></p-listbox>
+  <hr>
 
-  <button type="submit" [disabled]="formInicial.invalid">Crear juego</button>
+  <form class="formularioCrear" [formGroup]="formInicial" (submit)="onSubmitForm()">
 
-</form>
+    <p-listbox
+
+      [multiple]="true"
+      [options]="listaUsuariosRegistrados"
+      optionLabel="alias"
+      formControlName="userCheck"
+      id="listaCrearJuego"
+      [checkbox]="true"
+
+    ></p-listbox>
+
+    <button type="submit" [disabled]="formInicial.invalid">Crear juego</button>
+
+  </form>
+
+
+</div>
+

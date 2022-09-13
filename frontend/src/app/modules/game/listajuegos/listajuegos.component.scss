@@ -1,20 +1,25 @@
-table.GeneratedTable {
-  width: 100%;
-  background-color: #ffffff;
-  border-collapse: collapse;
-  border-width: 1px;
-  border-color: #0d0a1f;
-  border-style: solid;
-  color: #000000;
+
+.listarJuegos{
+
+  margin: 17.5vh auto;
+  width: 62%;
+  height: 65vh;
+  border-radius: .8em;
+  background-color: white;
+  padding-top: 3em;
+
 }
 
-table.GeneratedTable td, table.GeneratedTable th {
-  border-width: 1px;
-  border-color: #0d0a1f;
-  border-style: solid;
-  padding: 3px;
+.table-generated{
+  text-align: center;
 }
 
-table.GeneratedTable thead {
-  background-color: #ffffff;
+#table{
+  margin: 0 auto;
 }
+
+#table tbody tr td {
+  margin-left: 4em;
+  margin-right: 4em;
+}
+

@@ -1,7 +1,37 @@
-  <div class="GeneratedTable">
-    <select>
-      <option *ngFor="let item of listJuegos" [value]="item.id">
-        {{ item.uid }}
-      </option>
-    </select>
-  </div>
+<div class="listarJuegos">
+
+  <table border id="table" class="table-generated">
+
+    <thead>
+      <tr>
+        <th>Juego</th>
+        <th>Cantidad</th>
+        <th>Accion</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr class="" *ngFor="let item of listJuegos">
+
+        <td>{{item.id}}</td>
+
+        <td>{{item.cantidadJugadores}}</td>
+
+        <td>
+        <button
+
+          id="iniciarCambiarButton"
+          (click)="onClickIniciar(item.id, item.iniciado)">
+          {{ (item.iniciado) ? "Entrar a juego" : "Iniciar juego" }}
+
+        </button>
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>

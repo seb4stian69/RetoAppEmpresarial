@@ -12,8 +12,16 @@ export class HttpServiceService {
     return this.http.post('http://localhost:9091/juego/crear',{...body});
   }
 
-  listarGameBoard(id: any){
+  listarGameBoard(id: string){
     return this.http.get(`http://localhost:9091/juego/listar/${id}`);
+  }
+
+  iniciarJuego(id: string){
+    return this.http.post('http://localhost:9091/juego/iniciar', {id})
+  }
+
+  obtenerTablero(id: string){
+    return this.http.get('')
   }
 
 }

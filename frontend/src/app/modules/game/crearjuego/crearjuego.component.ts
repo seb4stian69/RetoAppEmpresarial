@@ -66,9 +66,9 @@ export class CrearjuegoComponent implements OnInit {
       })
     .subscribe(e => console.log(e));
 
-    alert("Se enviara al tablero");
+    alert("Se enviara a la lista de juegos");
 
-    this.router.navigate(['/game/board'])
+    this.router.navigate(['/game/listajuegos'])
 
   }
 
