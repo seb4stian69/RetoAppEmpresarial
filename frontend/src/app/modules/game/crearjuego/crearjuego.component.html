@@ -1,52 +1,14 @@
-<div class="crearJuego">
+<form class="crearJuego" [formGroup]="formInicial" (submit)="onSubmitForm()">
 
-  <header>Crear Juego</header>
+  <p-listbox
 
-  <hr>
+    [multiple]="true"
+    [options]="listaUsuariosRegistrados"
+    optionLabel="alias"
+    formControlName="userCheck"
 
-  <table class="GeneratedTable">
+  ></p-listbox>
 
-    <thead>
-      <tr>
-        <th>Nombres</th>
-      </tr>
-    </thead>
+  <button type="submit" [disabled]="formInicial.invalid">Crear juego</button>
 
-    <tbody>
-
-      <tr *ngFor="let item of listUsers">
-        <td>
-
-          <input
-
-          (click) = "checked($event) ? agregarJugador(item.alias, item.uid) : quitarJugador(item.uid)"
-
-          name="userCheck"
-          class = "userCheck"
-          type="checkbox"
-          id= `checkUser${{item.uid}}`
-          value = {{item.uid}}
-
-          >
-
-          <label>{{item.alias}}</label>
-
-        </td>
-      </tr>
-
-    </tbody>
-
-  </table>
-
-  <button class="buttonCrearJuego" (click)="crearGame()" >Crear Juego</button>
-
-</div>
-
-<!-- <input
-
-  class="form-check-input" type="checkbox" name="miDataInterior"
-  [(ngModel)]="propiedad.isSelected" [ngModelOptions]="{standalone: true}"
-  (change)="$event.target.checked ? agregar(propiedad.isSelected,propiedad.bloque, propiedad.atributo, propiedad.mapeo) :
-  quitar(propiedad.isSelected, propiedad.bloque, propiedad.atributo, propiedad.mapeo)"
-
-> -->
+</form>

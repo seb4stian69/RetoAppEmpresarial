@@ -5,11 +5,7 @@ import { HttpServiceService } from '../../../Services/http-service.service';
 import { WebsocketService } from '../../../Services/websocket.service';
 import { v4 as autoUid } from 'uuid';
 import { DbFireService } from '../../../Services/db-fire.service';
-import { UsuarioModel } from '../../../models/Usuario.model';
-import { UserDTO } from 'src/app/models/User.DTO';
-import { FormGroup, FormControl } from '@angular/forms';
-
-
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-crearjuego',
@@ -19,10 +15,11 @@ import { FormGroup, FormControl } from '@angular/forms';
 
 export class CrearjuegoComponent implements OnInit {
 
-  uid: any;
+  uid:any;
   uuid:string =autoUid();
-  listUsers: any;
+  listaUsuariosRegistrados: any;
   formInicial: any;
+  jugadores: any;
   sendPlayers:Array<any> = [];
 
   constructor(
@@ -35,29 +32,19 @@ export class CrearjuegoComponent implements OnInit {
   {
 
     this.formInicial = new FormGroup({
-      userCheck: new FormControl()
+      userCheck: new FormControl('', [Validators.required])
     })
 
   }
 
-  ngOnDestroy(): void {
-    this.webSocket.close();
-  }
+  ngOnDestroy(): void { this.webSocket.close(); }
 
 
   ngOnInit(): void {
 
     this.uid = this.userService.getCurrentUserUid();
 
-    this.sendPlayers.push({[this.uid]: this.userService.getCurrentUserAlias()})
-
-    this.dbService.getUser().subscribe( users => {
-
-      this.listUsers = users.filter( iterated => {
-        return iterated.uid != this.uid;
-      })
-
-    });
+    this.dbService.getUser().subscribe( users => { this.listaUsuariosRegistrados = users });
 
     this.webSocket.conection(this.uuid).subscribe({
       next: (message: any) => console.log(message),
@@ -67,52 +54,41 @@ export class CrearjuegoComponent implements OnInit {
 
   }
 
-  agregarJugador(alias: string, id: string){ this.sendPlayers.push( { [id]: alias } ) }
+  sendEventCrearJuego(players:any[]) {
 
-  quitarJugador(idreq: string){ this.sendPlayers.splice(this.sendPlayers.indexOf(idreq), 1) }
+    this.httpService
+      .createGameBoard({
 
-  logOut() { this.userService.logOut().then(() => this.router.navigate(['/'])) }
+        juegoId: this.uuid,
+        jugadores: this.obtenerJugadores(players),
+        jugadorPrincipalId: this.uid,
 
-  returnObjects(arregloPlayers: Array<any>): Object{
+      })
+    .subscribe(e => console.log(e));
 
-    return arregloPlayers.join(","),{}
+    alert("Se enviara al tablero");
 
-  }
-
-  crearGame() {
-
-    let players: Array<any> = [];
-
-    this.sendPlayers.forEach(player=>{players.push(JSON.stringify(player))});
-
-    let split = players.join(",").split(",");
-
-    console.log(split);
-
-    console.log({
-      "juegoId":this.uuid,
-      "jugadores": this.returnObjects(split),
-      "jugadorPrincipalId":this.uid
-    });
-
-    // this.httpService.createGameBoard({
-
-    //   "juegoId":this.uuid,
-    //   "jugadores": this.returnObjects(split),
-    //   "jugadorPrincipalId":this.uid
-
-    // }).subscribe((juego) => console.log(juego));
-
-
-
-    // alert("Seras enviado al tablero");
-
-    // this.router.navigate(["/game/board"]);
+    this.router.navigate(['/game/board'])
 
   }
 
-  checked(event: Event): boolean {
-    return (event.target as HTMLInputElement).checked;
+  onSubmitForm(){
+
+    let data = this.formInicial.value
+    this.sendEventCrearJuego(data.userCheck);
+
+  }
+
+  obtenerJugadores(jugadores: Array<any>) {
+
+    return jugadores.reduce(
+      (previous, current) => ({
+        ...previous,
+        [current.uid]: current.alias,
+      }),
+      {}
+    );
+
   }
 
 }

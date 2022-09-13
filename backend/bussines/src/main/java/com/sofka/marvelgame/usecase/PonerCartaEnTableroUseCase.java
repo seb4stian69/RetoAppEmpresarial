@@ -2,20 +2,18 @@ package com.sofka.marvelgame.usecase;
 import co.com.sofka.domain.generic.DomainEvent;
 import com.sofka.marvelgame.Juego;
 import com.sofka.marvelgame.commands.LanzarUnaCartaCommand;
+import com.sofka.marvelgame.commands.PonerCartaEnTablero;
 import com.sofka.marvelgame.gateway.JuegoDomainEventRepository;
 import com.sofka.marvelgame.values.Carta;
 import com.sofka.marvelgame.values.JuegoID;
 import com.sofka.marvelgame.values.JugadorID;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
 import java.util.Set;
 import java.util.logging.Logger;
 
-public class PonerCartaEnTableroUseCase extends UseCaseForCommand<LanzarUnaCartaCommand>{
+public class PonerCartaEnTableroUseCase extends UseCaseForCommand<PonerCartaEnTablero>{
 
-
-    private final Logger log = Logger.getLogger(PonerCartaEnTableroUseCase.class.getCanonicalName());
     private final JuegoDomainEventRepository repository;
 
     public PonerCartaEnTableroUseCase(JuegoDomainEventRepository repository) {
@@ -23,7 +21,7 @@ public class PonerCartaEnTableroUseCase extends UseCaseForCommand<LanzarUnaCarta
     }
 
     @Override
-    public Flux<DomainEvent> apply(Mono<LanzarUnaCartaCommand> lanzarUnaCartaCommand) {
+    public Flux<DomainEvent> apply(Mono<PonerCartaEnTablero> lanzarUnaCartaCommand) {
         return lanzarUnaCartaCommand.flatMapMany((command) -> repository
                 .obtenerEventosPor(command.getJuegoId())
                 .collectList()

@@ -27,4 +27,8 @@ public class Jugador extends Entity<JugadorID> {
         mazo = mazo.retirarCarta(carta);
     }
 
+    public Mazo mazo(){return this.mazo;}
+
+    public String alias(){return this.alias.value();}
+
 }

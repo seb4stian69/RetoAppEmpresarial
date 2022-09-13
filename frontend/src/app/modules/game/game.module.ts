@@ -7,6 +7,7 @@ import { CrearjuegoComponent } from './crearjuego/crearjuego.component';
 import { ListajuegosComponent } from './listajuegos/listajuegos.component';
 import { BoardComponent } from './board/board.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ListboxModule } from 'primeng/listbox';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     GameRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ListboxModule
   ]
 })
 
