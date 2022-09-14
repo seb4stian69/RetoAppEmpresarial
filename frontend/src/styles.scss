@@ -8,3 +8,11 @@
 body{
   background-color: #0D0A20;
 }
+
+button{
+  border: none;
+  background-color: rgb(224, 224, 224);
+}button:hover{
+  background-color: rgb(179, 179, 179);
+  cursor: pointer;
+}

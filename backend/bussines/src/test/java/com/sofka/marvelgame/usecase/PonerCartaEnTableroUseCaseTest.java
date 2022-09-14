@@ -17,7 +17,6 @@ import reactor.test.StepVerifier;
 
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -60,7 +59,7 @@ class PonerCartaEnTableroUseCaseTest {
         var idJugador1 = JugadorID.of("1234");
         var idJugador2 = JugadorID.of("4568");
         var cartaId = CartaMaestraID.of("user");
-        var cartas = Set.of(new Carta(cartaId, 20, true));
+        var cartas = Set.of(new Carta(cartaId, 20, true, estaOculta));
         var rondaDelJuego = new Ronda(1, Set.of(idJugador1, idJugador2));
 
         return Flux.just(

@@ -11,8 +11,6 @@ public class Ronda implements ValueObject<Ronda.Props> {
     private final Integer numero;
     private final Boolean estaIniciada;
 
-
-
     public Ronda(Integer numero, Set<JugadorID> jugadores) {
         this.jugadores = jugadores;
         this.numero = numero;
@@ -25,8 +23,6 @@ public class Ronda implements ValueObject<Ronda.Props> {
         this.estaIniciada = estaIniciada;
     }
 
-
-
     public Ronda iniciarRonda(){
         return new Ronda(this.numero, this.jugadores, true);
     }
@@ -36,11 +32,9 @@ public class Ronda implements ValueObject<Ronda.Props> {
     }
 
     //public Ronda
-
     public Ronda incrementarRonda(Set<JugadorID> jugadores){
         return new Ronda(this.numero + 1, jugadores, false);
     }
-
 
     @Override
     public Props value() {

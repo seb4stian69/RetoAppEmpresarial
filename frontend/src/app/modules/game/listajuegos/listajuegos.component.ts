@@ -40,7 +40,10 @@ export class ListajuegosComponent implements OnInit {
     if(estaIniciado){
       this.router.navigate(['/game/board'])
     }else{
-      console.log("Iniciando juego")
+      this.httpService.iniciarJuego(id).subscribe()
+      console.log("Iniciando juego: " + id)
+      alert("El juego ha sido iniciado")
+      this.router.navigate([`/game/board/${id}`])
     }
 
   }

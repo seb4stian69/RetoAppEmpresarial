@@ -5,8 +5,8 @@ import { environment } from '../environments/environment';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {getFirestore, provideFirestore } from '@angular/fire/firestore';
-import {HttpClientModule} from '@angular/common/http'
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { HttpClientModule } from '@angular/common/http'
 
 // Rutas
 import { AppRoutingModule } from './app-routing.module';

@@ -1,9 +1,47 @@
-<h1>Board - MarvelGame</h1>
+<div class="datosBasicosTablero">
 
-<div>
 
-  <p>Jugadores n/5</p>
-  <p>Temporizador</p>
+  <div>
+    <p>Ronda #{{dataGeneralBoard.ronda.numero}}</p>
+    <p>Jugadores {{dataGeneralBoard.tablero.jugadores.length}}/5</p>
+  </div>
+
+  <div>
+    <p>Temporizador</p>
+    <p>Tiempo: 80s </p>
+  </div>
+
+  <button>Iniciar</button>
 
 </div>
+
+<div class="section">
+
+  <div class="vistaTablero">
+
+    <div class="cartaPuesta" ></div>
+    <div class="cartaPuesta" ></div>
+    <div class="cartaPuesta" ></div>
+    <div class="cartaPuesta" ></div>
+    <div class="cartaPuesta" ></div>
+
+  </div>
+
+  <div class="vistaMazo">
+
+    <div *ngFor="let carta of cartasCurrentUser" class="cartaMazo" >
+
+      <img src="../../../../assets/cartasImages/{{carta.cartaId}}" alt="imagenMarvel">
+
+      <div class="info">
+        <h4>{{carta.poder}}px</h4>
+        <button (click)="ponerCarta(carta.cartaId)" class="ponerCartaBtn" >Poner</button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
 

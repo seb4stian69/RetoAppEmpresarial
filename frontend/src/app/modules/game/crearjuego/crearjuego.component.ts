@@ -66,6 +66,8 @@ export class CrearjuegoComponent implements OnInit {
       })
     .subscribe(e => console.log(e));
 
+    this.httpService.listarGameBoard(this.uid).subscribe()
+
     alert("Se enviara a la lista de juegos");
 
     this.router.navigate(['/game/listajuegos'])
