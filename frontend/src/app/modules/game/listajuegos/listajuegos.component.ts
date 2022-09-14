@@ -29,19 +29,20 @@ export class ListajuegosComponent implements OnInit {
     this.httpService.listarGameBoard(this.uid).subscribe(juego =>{
 
       this.listJuegos = juego
-      // console.log(juego)
+      console.log(juego)
 
     })
 
   }
 
-  onClickIniciar(id:string, estaIniciado: boolean){
+  onClickIniciar(id:string, estaIniciado: boolean, uid:any){
 
     if(estaIniciado){
       this.router.navigate(['/game/board'])
     }else{
       this.httpService.iniciarJuego(id).subscribe()
       console.log("Iniciando juego: " + id)
+      sessionStorage.setItem("boardOwner", uid)
       alert("El juego ha sido iniciado")
       this.router.navigate([`/game/board/${id}`])
     }

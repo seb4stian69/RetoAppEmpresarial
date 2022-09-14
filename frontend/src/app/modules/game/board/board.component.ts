@@ -13,6 +13,7 @@ export class BoardComponent implements OnInit {
 
   dataGeneralBoard: any;
   cartasCurrentUser: any;
+  playEnable:any;
 
   constructor(
     private httpService: HttpServiceService,
@@ -29,16 +30,22 @@ export class BoardComponent implements OnInit {
     pathParams.subscribe( (data: Params) =>{
 
       this.httpService.obtenerTablero(data['id']).subscribe( data =>{
-        console.log(data);
         this.dataGeneralBoard = data;
       })
 
       this.httpService.obtenerCartasCurrentUser(currentUid, data['id']).subscribe( (data: Params)  => {
-        console.log(data['cartas']);
         this.cartasCurrentUser = data['cartas'];
       })
 
     })
+
+    if(currentUid == sessionStorage.getItem("boardOwner")){
+      this.playEnable = true
+    }else{
+      this.playEnable = false
+    }
+
+    console.log(this.playEnable)
 
   }
 
