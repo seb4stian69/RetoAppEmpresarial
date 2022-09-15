@@ -8,10 +8,10 @@
 
   <div>
     <p>Temporizador</p>
-    <p>Tiempo: 80s </p>
+    <p>Tiempo: {{temporizador}}s </p>
   </div>
 
-  <button *ngIf="playEnable" >Iniciar</button>
+  <button (click)="iniciarRonda()" >Iniciar</button>
 
 </div>
 

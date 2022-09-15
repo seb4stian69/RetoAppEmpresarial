@@ -23,14 +23,19 @@ public class DeterminarGanadorUseCase  extends UseCaseForEvent<RondaTerminada> {
 
     @Override
     public Flux<DomainEvent> apply(Mono<RondaTerminada> rondaTerminadaMono) {
+
         return rondaTerminadaMono.flatMapMany((event) -> repository
+
                 .obtenerEventosPor(event.aggregateRootId())
                 .collectList()
                 .flatMapIterable(events -> {
+
                     var juego = Juego.from(JuegoID.of(event.aggregateRootId()), events);
+
                     var jugadoresVivos = juego.jugadores().values().stream()
                             .filter(jugador -> jugador.mazo().value().cantidad() > 0)
                             .collect(Collectors.toList());
+
                     if(jugadoresVivos.size()  == 1){
                         var jugador = jugadoresVivos.get(0);
                         juego.finalizarJuego(jugador.identity(), jugador.alias());
@@ -41,6 +46,9 @@ public class DeterminarGanadorUseCase  extends UseCaseForEvent<RondaTerminada> {
                                         .findFirst()).ifPresent(jugador -> juego.finalizarJuego(jugador.identity(), jugador.alias()));
                     }
                     return juego.getUncommittedChanges();
-                }));
+
+        }));
+
     }
+
 }

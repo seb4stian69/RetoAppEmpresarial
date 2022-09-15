@@ -19,4 +19,8 @@ public class Alias implements ValueObject<String> {
         return alias;
     }
 
+    @Override
+    public String toString() {
+        return this.alias;
+    }
 }

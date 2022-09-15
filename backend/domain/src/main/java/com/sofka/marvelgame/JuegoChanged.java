@@ -4,15 +4,19 @@ import co.com.sofka.domain.generic.EventChange;
 import com.sofka.marvelgame.entities.Jugador;
 import com.sofka.marvelgame.entities.Tablero;
 import com.sofka.marvelgame.events.*;
+import com.sofka.marvelgame.values.JugadorID;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.Set;
 
 public class JuegoChanged extends EventChange {
     public JuegoChanged(Juego juego) {
+
         apply((JuegoCreado event) -> {
             juego.jugadores = new HashMap<>();
             juego.jugadorPrincipal = event.getJugadorPrincipal();
         });
+
         apply((JugadorAgregado event) -> {
             juego.jugadores.put(event.getJuegoId(),
                     new Jugador(event.getJuegoId(), event.getAlias(), event.getPuntos(), event.getMazo())
@@ -55,6 +59,7 @@ public class JuegoChanged extends EventChange {
 
             juego.ronda = juego.ronda.iniciarRonda();
             juego.tablero.habilitarApuesta();
+
         });
 
         apply((RondaTerminada event) -> {
@@ -68,7 +73,24 @@ public class JuegoChanged extends EventChange {
         });
 
         apply((JuegoFinalizado event) -> {
+
             juego.ganador = juego.jugadores.get(event.getJugadorId());
+
+
+            Set<JugadorID> jugadores = null;
+
+            juego.jugadores.values().stream().forEach(Jugador ->{
+
+                if(Objects.isNull(Jugador)){
+                    throw new IllegalArgumentException("No se envio ningun jugador");
+                }
+
+                jugadores.add(Jugador.identity());
+
+            });
+
+            new HistoricoCreado(jugadores, juego.identity());
+
         });
 
     }

@@ -1,17 +1,9 @@
 <div class="homeView">
 
-  <header>Inicio</header>
-
-  <hr>
-
-  <h3>Indicaciones de Juego</h3>
-  <p>Para iniciar el juego tu y tus contrincantes <br> deben estar registrados</p>
-
   <button class="ButtonCrearJuego" (click)="goToCrearJuego()" routerLink="/crear">Crear Juego</button>
   <button class="ButtonListarJuego" (click)="goToListarJuegos()" routerLink="/game/listaJuegos">Lista de Juegos creados</button> <br>
-
-  <a href="http://192.168.1.88:4200/">Enlace de invitacion para el juego</a>
-
+  <button>Historial de juegos finalizados</button>
+  <button (click)="salirApp()">Log-out</button>
 </div>
 
-<button (click)="salirApp()">Log-out</button>
+

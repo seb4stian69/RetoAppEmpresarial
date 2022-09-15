@@ -19,6 +19,7 @@ public class Juego extends AggregateEvent<JuegoID> {
     protected Ronda ronda;
     protected JugadorID jugadorPrincipal;
 
+
     public Juego(JuegoID id, JugadorID uid, JugadorFactory jugadorFactory) {
         super(id);
         appendChange(new JuegoCreado(uid)).apply();
