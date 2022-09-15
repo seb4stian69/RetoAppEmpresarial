@@ -1,46 +1,73 @@
-<div class="datosBasicosTablero">
+<div class="VistaTablero">
 
+  <div class="header">
 
-  <div>
-    <p>Ronda #{{dataGeneralBoard.ronda.numero}}</p>
-    <p>Jugadores {{dataGeneralBoard.tablero.jugadores.length}}/5</p>
+    <div class="DataGeneral">
+      <p>Ronda: {{dataGeneralBoard.ronda.numero}} | Jugadores: {{dataGeneralBoard.tablero.jugadores.length}}/5 | Tiempo: {{temporizador}}s</p>
+    </div>
+
+    <button *ngIf="playEnable" (click)="iniciarRonda()" > Iniciar </button>
+
   </div>
 
-  <div>
-    <p>Temporizador</p>
-    <p>Tiempo: {{temporizador}}s </p>
-  </div>
+  <div class="CartasPuestas" >
 
-  <button (click)="iniciarRonda()" >Iniciar</button>
+    <div class="cartaTablero">
+      <img src="../../../../assets/Image/board/cartaOculta.png" alt="cartaTablero">
+    </div>
+
+    <div class="cartaTablero">
+      <img src="../../../../assets/Image/board/cartaOculta.png" alt="cartaTablero">
+    </div>
+
+    <div class="cartaTablero">
+      <img src="../../../../assets/Image/board/cartaOculta.png" alt="cartaTablero">
+    </div>
+
+    <div class="cartaTablero">
+      <img src="../../../../assets/Image/board/cartaOculta.png" alt="cartaTablero">
+    </div>
+
+    <div class="cartaTablero">
+      <img src="../../../../assets/Image/board/cartaOculta.png" alt="cartaTablero">
+    </div>
+
+    <div class="cartaTablero">
+      <img src="../../../../assets/Image/board/cartaOculta.png" alt="cartaTablero">
+    </div>
+
+    <div class="cartaTablero">
+      <img src="../../../../assets/Image/board/cartaOculta.png" alt="cartaTablero">
+    </div>
+
+    <div class="cartaTablero">
+      <img src="../../../../assets/Image/board/cartaOculta.png" alt="cartaTablero">
+    </div>
+
+    <div class="cartaTablero">
+      <img src="../../../../assets/Image/board/cartaOculta.png" alt="cartaTablero">
+    </div>
+
+    <div class="cartaTablero">
+      <img src="../../../../assets/Image/board/cartaOculta.png" alt="cartaTablero">
+    </div>
+
+
+  </div>
 
 </div>
 
-<div class="section">
+<div class="VistaMazo">
 
-  <div class="vistaTablero">
+  <div class="slider">
 
-    <div class="cartaPuesta" ></div>
-    <div class="cartaPuesta" ></div>
-    <div class="cartaPuesta" ></div>
-    <div class="cartaPuesta" ></div>
-    <div class="cartaPuesta" ></div>
-
-  </div>
-
-  <div class="vistaMazo">
-
-    <div *ngFor="let carta of cartasCurrentUser" class="cartaMazo" >
-
+    <div *ngFor="let carta of cartasCurrentUser" class="CartaMazo">
       <img src="../../../../assets/cartasImages/{{carta.cartaId}}" alt="imagenMarvel">
-
-      <div class="info">
-        <h4>{{carta.poder}}px</h4>
-        <button (click)="ponerCarta(carta.cartaId)" class="ponerCartaBtn" >Poner</button>
-      </div>
-
+      <div class="ButtonMasPuntos"><button>Poner: {{carta.poder}}</button></div>
     </div>
 
   </div>
+
 
 </div>
 

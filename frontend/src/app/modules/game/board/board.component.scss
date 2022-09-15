@@ -1,116 +1,145 @@
+// Contenedores padres
 
-// Variables de scss
-$fondoBlancoOscuro: rgb(255, 255, 255);
+.header{
+  display: flex;
+  margin-left: 2.4em;
+}
 
-// Elementos del board
+.VistaTablero{
 
-h1{
+  margin: 2.5em 2em;
+  width: 67%;
+  height: 88vh;
+  border-radius: .8em;
+  background-color: rgba(255, 255, 255, .15);
+  backdrop-filter: blur(1em);
+  padding-top: 1.7em;
+  padding-bottom: 1.7em;
+
+}
+
+.VistaMazo{
+
+  background-color: aqua;
+  float: right;
+  margin-top: -39em;
+  margin-right: 2em;
+  width: 26%;
+  height: 88vh;
+  border-radius: .8em;
+  background-color: rgba(255, 255, 255, .15);
+  backdrop-filter: blur(1em);
+
+}
+
+// Contenedores de vista tablero
+
+.DataGeneral{
+  width: 45%;
+  height: 2.6em;
+  background-color: white;
+  border-radius: .4em;
+  padding-top: .65em;
+  margin: 1em 2em;
+  margin-left: 8em;
+}
+
+.CartasPuestas{
+
+  background-color: white;
+  display: flex;
+  width: 75%;
+  border-radius: .6em;
+  height: 26em;
+  margin-top: 1.4em;
+  margin-left: 6.5em;
+
+  padding: 3.5em 3.5em;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+}
+
+// Elementos de vista tablero
+.DataGeneral p{
+  text-align: center;
+}
+
+.header button{
+  width: 11em;
+  margin-top: 1.3em;
+  height: 2.9em;
+  border-radius: .4em;
+  background-color: #0d0a20;
   color: white;
 }
 
-.datosBasicosTablero{
+.CartasPuestas img{
 
-  margin: 1.5em auto;
+  // display: none;
+  width: 6.3em;
+  margin-left: .5em;
 
-  background-color: white;
-  width: 30%;
-  height: 5em;
-  border-radius: 1.2em;
-  padding: .5em 1em;
-
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-
-  padding: .4em 1.5em 0 1.5em;
-  padding-top: 1em;
-
-  margin-top: 3.2em;
-
-}.datosBasicosTablero button{
-
-  height: 70%;
-  border-radius: .8em;
+  -webkit-box-shadow: -4px 4px 7px -2px rgba(0,0,0,0.75);
+  -moz-box-shadow: -4px 4px 7px -2px rgba(0,0,0,0.75);
+  box-shadow: -4px 4px 7px -2px rgba(0,0,0,0.75);
 
 }
 
-.section{
+// Contenedores de vista mazo
 
-  display: grid;
-  grid-template-columns: repeat(13, 1fr);
-  grid-template-rows: repeat(13, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+.slider{
 
-  margin: 0 auto;
+  width: 75%;
+  height: 85%;
 
-  width: 90%;
-  height: 30em;
+  margin-top: 2.7em;
+  margin-left: 2.8em;
 
-
-}
-
-.vistaTablero{
-
-  width: 100%;
-  height: 27em;
-  grid-area: 2 / 2 / 13 / 9;
-  background-color: $fondoBlancoOscuro;
-  border-radius: .7em;
-
-  display: flex;
-
-  padding-left: 2em;
-  padding-right: 2em;
-
-}
-
-.vistaMazo{
-  width: 100%;
-  height: 27em;
-  grid-area: 2 / 10 / 13 / 13;
-  background-color: $fondoBlancoOscuro;
-  border-radius: .7em;
+  border-radius: .5em;
   overflow-y: scroll;
-  padding-bottom: 1em;
-}.vistaMazo::-webkit-scrollbar {
+
+}.slider::-webkit-scrollbar {
   display: none;  /* Ocultar scroll */
 }
 
-.cartaPuesta{
-  width: 16%;
-  height: 40%;
-  background-color: aqua;
-  margin: 20% auto;
+.CartaMazo{
+
+  background-color: white;
+  border-radius: .8em;
+  margin-bottom: 1.5em;
+  width: 85%;
+  height: 55%;
+
+  margin-left: 1.3em;
+
 }
 
-.cartaMazo{
-  margin: 10% auto;
-  width: 80%;
-  height: 50%;
-  margin-bottom: 3em;
+// Elementos vista mazo
+
+.CartaMazo img{
+  height: 70%;
+  width: 70%;
+  border-radius: .3em;
+  margin-top: 1.5em;
+  margin-left: 2.05em;
 }
 
-.cartaMazo h4{
-  text-align: center;
-  display: inline-block;
-  margin-right: 1em;
+.ButtonMasPuntos{
+
+  margin-top: .5em;
+  margin-left: 4.7em;
+
 }
 
-.info{
-  margin: 0 auto;
-  margin-left: 26%;
-}
+.ButtonMasPuntos button{
 
-.cartaMazo button{
-  width: 4em;
+  width: 45%;
   height: 2em;
-  border-radius: .2em;
-}
+  background-color: #0d0a20;
+  color:white;
+  border-radius: .4em;
 
-.cartaMazo img{
-  width: 100%;
-  height: 100%;
 }

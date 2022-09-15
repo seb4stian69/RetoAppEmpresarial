@@ -4,7 +4,6 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { UserService } from 'src/app/Services/user-service.service';
 import { WebsocketService } from 'src/app/Services/websocket.service';
 
-
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -14,7 +13,7 @@ export class BoardComponent implements OnInit {
 
   dataGeneralBoard: any;
   cartasCurrentUser: any;
-  playEnable:boolean = true;
+  playEnable:any;
   idJuego: any;
   currentUserId: any;
   temporizador:any;
@@ -30,6 +29,7 @@ export class BoardComponent implements OnInit {
 
     let pathParams = this.activatedRoute.params;
     this.currentUserId = this.userService.getCurrentUserUid();
+    this.playEnable = sessionStorage.getItem('boardOwner') == this.currentUserId;
 
     pathParams.subscribe( (data: Params) =>{
 

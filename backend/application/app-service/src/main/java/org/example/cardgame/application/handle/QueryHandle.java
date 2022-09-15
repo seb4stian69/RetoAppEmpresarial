@@ -1,7 +1,5 @@
 package org.example.cardgame.application.handle;
 
-import com.sofka.marvelgame.values.Alias;
-import org.example.cardgame.application.handle.model.HistoricoViewModel;
 import org.example.cardgame.application.handle.model.JuegoListViewModel;
 import org.example.cardgame.application.handle.model.MazoViewModel;
 import org.example.cardgame.application.handle.model.TableroViewModel;
@@ -24,7 +22,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 @Configuration
 public class QueryHandle {
 
-    Logger log = Logger.getLogger("Logger");
+    Logger log = Logger.getLogger("Datos enviados hacia la busqueda");
 
     private final ReactiveMongoTemplate template;
     public QueryHandle(ReactiveMongoTemplate template) { this.template = template; }
@@ -32,7 +30,7 @@ public class QueryHandle {
     @Bean RouterFunction<ServerResponse> listarJuego() {
         return RouterFunctions.route(
                 GET("/juego/listar/{id}"),
-                request -> template.find(filterByUId(request.pathVariable("id")), JuegoListViewModel.class, "gameview")
+                request -> template.find(filterbyUsers(request.pathVariable("id")), JuegoListViewModel.class, "gameview")
                         .collectList()
                         .flatMap(list -> ServerResponse.ok()
                                 .contentType(MediaType.APPLICATION_JSON)
@@ -106,5 +104,10 @@ public class QueryHandle {
         );
     }
 
+    private Query filterbyUsers(String uid){
+        return new Query(
+                Criteria.where("jugadores."+uid+".jugadorId").is(uid)
+        );
+    }
 
 }

@@ -31,17 +31,15 @@ export class ListajuegosComponent implements OnInit {
 
     this.webSocket.conection(this.uid).subscribe({
       next: (message: any) => {
-
-        this.httpService.listarGameBoard(this.uid).subscribe(juego =>{
-
-          this.listJuegos = juego
-
-        })
-
-      },
+        console.log(message)
+      }
     });
 
+    this.httpService.listarGameBoard(this.uid).subscribe(juego =>{
 
+      this.listJuegos = juego
+
+    })
 
   }
 
