@@ -44,7 +44,7 @@ export class CrearjuegoComponent implements OnInit {
 
     this.uid = this.userService.getCurrentUserUid();
 
-    this.dbService.getUser().subscribe( users => { this.listaUsuariosRegistrados = users });
+    this.dbService.getUser().subscribe( users => { this.listaUsuariosRegistrados = users.filter( u => u.uid != this.uid) });
 
     this.webSocket.conection(this.uuid).subscribe({
       next: (message: any) => console.log(message),
@@ -55,6 +55,12 @@ export class CrearjuegoComponent implements OnInit {
   }
 
   sendEventCrearJuego(players:any[]) {
+
+    console.log({
+        juegoId: this.uuid,
+        jugadores: this.obtenerJugadores(players),
+        jugadorPrincipalId: this.uid,
+    })
 
     this.httpService
       .createGameBoard({
@@ -78,10 +84,18 @@ export class CrearjuegoComponent implements OnInit {
 
     let data = this.formInicial.value
     this.sendEventCrearJuego(data.userCheck);
+    console.log(data.userCheck);
 
   }
 
   obtenerJugadores(jugadores: Array<any>) {
+
+    let currentUser = {
+      alias: this.userService.getCurrentUserAlias(),
+      uid: this.uid
+    }
+
+    jugadores.unshift(currentUser);
 
     return jugadores.reduce(
       (previous, current) => ({

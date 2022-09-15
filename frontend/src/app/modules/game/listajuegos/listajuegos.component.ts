@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpServiceService } from 'src/app/Services/http-service.service';
 import { UserService } from 'src/app/Services/user-service.service';
+import { WebsocketService } from 'src/app/Services/websocket.service';
 import { v4 as uuidv4 } from 'uuid';
+
 
 
 @Component({
@@ -19,21 +21,27 @@ export class ListajuegosComponent implements OnInit {
   constructor(
     private httpService: HttpServiceService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private webSocket: WebsocketService
   ){}
 
   ngOnInit(): void {
 
     this.uid = this.userService.getCurrentUserUid();
 
-    
+    this.webSocket.conection(this.uid).subscribe({
+      next: (message: any) => {
 
-    this.httpService.listarGameBoard(this.uid).subscribe(juego =>{
+        this.httpService.listarGameBoard(this.uid).subscribe(juego =>{
 
-      this.listJuegos = juego
-      console.log(juego)
+          this.listJuegos = juego
 
-    })
+        })
+
+      },
+    });
+
+
 
   }
 
