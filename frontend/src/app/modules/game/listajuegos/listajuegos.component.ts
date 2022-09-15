@@ -26,6 +26,8 @@ export class ListajuegosComponent implements OnInit {
 
     this.uid = this.userService.getCurrentUserUid();
 
+    
+
     this.httpService.listarGameBoard(this.uid).subscribe(juego =>{
 
       this.listJuegos = juego

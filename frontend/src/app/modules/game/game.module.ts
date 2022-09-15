@@ -8,6 +8,7 @@ import { ListajuegosComponent } from './listajuegos/listajuegos.component';
 import { BoardComponent } from './board/board.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListboxModule } from 'primeng/listbox';
+import { HistorialPartidasComponent } from './historial-partidas/historial-partidas.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ListboxModule } from 'primeng/listbox';
     HomeComponent,
     CrearjuegoComponent,
     ListajuegosComponent,
-    BoardComponent
+    BoardComponent,
+    HistorialPartidasComponent
   ],
   imports: [
 

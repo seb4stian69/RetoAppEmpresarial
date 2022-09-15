@@ -1,9 +1,13 @@
 <div class="homeView">
 
-  <button class="ButtonCrearJuego" (click)="goToCrearJuego()" routerLink="/crear">Crear Juego</button>
-  <button class="ButtonListarJuego" (click)="goToListarJuegos()" routerLink="/game/listaJuegos">Lista de Juegos creados</button> <br>
-  <button>Historial de juegos finalizados</button>
-  <button (click)="salirApp()">Log-out</button>
+  <div class="btnContainer">
+    <button class="ButtonCrearJuego" (click)="goToCrearJuego()" routerLink="/crear">Crear Juego</button>
+    <button class="ButtonListarJuego" (click)="goToListarJuegos()" routerLink="/game/listaJuegos">Lista de Juegos creados</button>
+    <button>Historial de juegos finalizados</button>
+  </div>
+
 </div>
+
+<!-- <button (click)="salirApp()">Log-out</button> -->
 
 

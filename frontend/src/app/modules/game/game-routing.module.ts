@@ -20,8 +20,13 @@ const routes: Routes = [
   {
     path: "listajuegos",
     component: ListajuegosComponent
-  },{
+  },
+  {
     path: "board/:id",
+    component: BoardComponent
+  },
+  {
+    path: "historial/:id",
     component: BoardComponent
   }
 

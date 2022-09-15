@@ -1,7 +1,28 @@
 .homeView{
-  margin: 17.5vh auto;
-  width: 62%;
-  height: 65vh;
+  margin: 9.5% auto;
+  width: 50%;
+  height: 60vh;
   border-radius: .8em;
-  background-color: white;
+  background-color: rgba(255, 255, 255, .15);
+  backdrop-filter: blur(1em);
+}
+
+.btnContainer{
+
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  -ms-flex-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 12%;
+
+}
+
+.btnContainer button{
+
+  margin: 1em 0;
+  height: 3.5em;
+  border-radius: .6em;
+
 }
