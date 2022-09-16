@@ -23,5 +23,12 @@
 
   height: 3.5em;
   border-radius: .6em;
+  margin-top: .5em;
+  background-color: rgb(244, 65, 65);
+  color: white;
+
+}.btnContainer button:hover{
+
+  background-color: rgb(231, 56, 56);
 
 }
