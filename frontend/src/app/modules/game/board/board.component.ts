@@ -101,10 +101,7 @@ export class BoardComponent implements OnInit  {
             this.ganador = true;
             this.ganadorRonda=event.alias;
 
-            // swal.fire('Ganador del juego', event.alias);
-            // this.router.navigate(['listaJugadores']);
-
-            alert("Ganador: " + this.ganadorAlias)
+            alert(this.ganadorAlias)
 
             setTimeout(() => {
               this.router.navigate(['/game']);
