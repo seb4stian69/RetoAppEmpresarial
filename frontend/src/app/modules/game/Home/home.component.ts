@@ -40,6 +40,10 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/game/listajuegos'])
   }
 
+  goToHistorial(){
+    this.router.navigate(['/game/historial'])
+  }
+
   savePlayer(): void {
 
     const user: UserDTO ={
@@ -59,7 +63,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  salirApp(){
+  logout(){
     alert("Saldras de la app");
     this.userService.logOut();
     this.router.navigate([""])

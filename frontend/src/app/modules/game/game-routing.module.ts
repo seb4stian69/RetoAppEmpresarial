@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BoardComponent } from './board/board.component';
 import { CrearjuegoComponent } from './crearjuego/crearjuego.component';
+import { HistorialPartidasComponent } from './historial-partidas/historial-partidas.component';
 import { HomeComponent } from './Home/home.component';
 import { ListajuegosComponent } from './listajuegos/listajuegos.component';
+
 
 
 
@@ -26,8 +28,8 @@ const routes: Routes = [
     component: BoardComponent
   },
   {
-    path: "historial/:id",
-    component: BoardComponent
+    path: "historial",
+    component: HistorialPartidasComponent
   }
 
 ];

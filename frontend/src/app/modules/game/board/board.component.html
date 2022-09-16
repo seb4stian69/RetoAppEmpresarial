@@ -3,7 +3,7 @@
   <div class="header">
 
     <div class="DataGeneral">
-      <p>Ronda: {{numeroRonda}} | Jugadores: {{jugadoresTablero}}/5 | Tiempo: {{tiempo}}s</p>
+      <p>Ronda: {{rondaActual}} | Jugadores: {{cantidadJugadores}}/5 | Tiempo: {{temporizador}}s</p>
     </div>
 
     <button *ngIf="playEnable" (click)="iniciarRonda()" > Iniciar </button>
@@ -12,7 +12,7 @@
 
   <div class="CartasPuestas" >
 
-    <div class="cartaTablero" *ngFor="let card of cartasDelTablero">
+    <div class="cartaTablero" *ngFor="let card of cartasApostadas">
       <img src="../../../../assets/Image/board/cartaOculta.png" alt="cartaTablero">
     </div>
 
@@ -24,9 +24,9 @@
 
   <div class="slider">
 
-    <div *ngFor="let carta of cartasDelJugador" class="CartaMazo">
+    <div *ngFor="let carta of mazoJugadorActual" class="CartaMazo">
       <img src="../../../../assets/cartasImages/{{carta.cartaId}}" alt="imagenMarvel">
-      <div (click)="ponerCarta(carta.cartaId)" class="ButtonMasPuntos"><button>Poner: {{carta.poder}}</button></div>
+      <div (click)="apostarCarta(carta.cartaId)" class="ButtonMasPuntos"><button>Poner: {{carta.poder}}</button></div>
     </div>
 
   </div>
