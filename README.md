@@ -8,5 +8,5 @@
 ![Imagen modelado](https://github.com/seb4stian69/RetoAppEmpresarial/blob/main/imagenes/ProjectMarvel-Modelado-%5BJuego%5D.png)
 
 ## Enlace del video
-[Link del video]()
+[Link del video](https://youtu.be/1BZiVgyPZhY)
 ![frameVideo]()
