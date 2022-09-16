@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpServiceService } from 'src/app/Services/http-service.service';
 
 @Component({
   selector: 'app-historial-partidas',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistorialPartidasComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private httpService: HttpServiceService,
+
+    ){ }
 
   ngOnInit(): void {
+
+    
+
   }
 
 }

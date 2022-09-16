@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import co.com.sofka.domain.generic.DomainEvent;
 import com.sofka.marvelgame.events.JuegoCreado;
 import com.sofka.marvelgame.events.JugadorAgregado;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.bson.Document;
@@ -83,8 +82,8 @@ public class GameMaterializeHandle {
     public void handleJuegoFinalizado(JuegoFinalizado event){
         var data = new Update();
         data.set("finalizado", true);
-        template.updateFirst(getFilterByAggregateId(event), data, COLLECTION_VIEW).block();
         data.set("ganador."+event.getJugadorId().value()+".alias", event.getAlias());
+        template.updateFirst(getFilterByAggregateId(event), data, COLLECTION_VIEW).block();
     }
 
     private Query getFilterByAggregateId(DomainEvent event) {
