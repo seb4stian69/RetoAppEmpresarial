@@ -1,5 +1,6 @@
 package org.example.cardgame.application.handle.materialize;
 
+import com.sofka.marvelgame.events.JuegoFinalizado;
 import org.springframework.context.annotation.Configuration;
 import co.com.sofka.domain.generic.DomainEvent;
 import com.sofka.marvelgame.events.JuegoCreado;
@@ -46,6 +47,16 @@ public class GameMaterializeHandle {
         data.set("jugadores."+event.getJuegoId().value()+".jugadorId", event.getJuegoId().value());
         data.inc("cantidadJugadores");
         template.updateFirst(getFilterByAggregateId(event), data, COLLECTION_VIEW).block();
+    }
+
+    @EventListener
+    public void handleJuegoIniciado(Juego event)
+
+    @EventListener
+    public void handleJuegoFinalizado(JuegoFinalizado event){
+        var data = new Update();
+        data.set("finalizado", true);
+        //data.set("ganador", "jugadores."+event.getJugadorId().value()+".alias", event.getAlias());
     }
 
     private Query getFilterByAggregateId(DomainEvent event) {

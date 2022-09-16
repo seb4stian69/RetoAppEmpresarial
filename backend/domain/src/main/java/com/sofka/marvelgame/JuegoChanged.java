@@ -6,10 +6,12 @@ import com.sofka.marvelgame.entities.Tablero;
 import com.sofka.marvelgame.events.*;
 import com.sofka.marvelgame.values.JugadorID;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 public class JuegoChanged extends EventChange {
+
     public JuegoChanged(Juego juego) {
 
         apply((JuegoCreado event) -> {
@@ -19,12 +21,12 @@ public class JuegoChanged extends EventChange {
 
         apply((JugadorAgregado event) -> {
             juego.jugadores.put(event.getJuegoId(),
-                    new Jugador(event.getJuegoId(), event.getAlias(), event.getPuntos(), event.getMazo())
+                    new Jugador(event.getJuegoId(), event.getAlias(),event.getPuntos(),event.getMazo())
             );
         });
 
         apply((RondaCreada event) -> {
-            if(Objects.isNull(juego.tablero)){
+            if (Objects.isNull(juego.tablero)) {
                 throw new IllegalArgumentException("Debe existir el tablero primero");
             }
             juego.ronda = event.getRonda();
@@ -40,6 +42,9 @@ public class JuegoChanged extends EventChange {
         });
 
         apply((CartaPuestaEnTablero event) -> {
+            if(Boolean.FALSE.equals(juego.tablero.estaHabilitado())){
+                throw new IllegalArgumentException("No se puedo apostar porque el tablero no esta habilitado");
+            }
             juego.tablero.adicionarPartida(event.getJugadorId(), event.getCarta());
         });
 
@@ -52,14 +57,12 @@ public class JuegoChanged extends EventChange {
         });
 
         apply((RondaIniciada event) -> {
-
             if(Objects.isNull(juego.ronda)){
-                throw new IllegalArgumentException("Debe existir una runda creada");
+                throw new IllegalArgumentException("Debe existir una ronda creada");
             }
-
             juego.ronda = juego.ronda.iniciarRonda();
             juego.tablero.habilitarApuesta();
-
+            juego.tablero.partida().forEach((key, Value) -> juego.tablero.partida().put(key,new HashSet<>()));
         });
 
         apply((RondaTerminada event) -> {
@@ -68,29 +71,12 @@ public class JuegoChanged extends EventChange {
         });
 
         apply((CartasAsignadasAJugador event) -> {
-            var jugador =  juego.jugadores().get(event.getGanadorId());
+            var jugador = juego.jugadores().get(event.getGanadorId());
             event.getCartasApuesta().forEach(jugador::agregarCartaAMazo);
         });
 
         apply((JuegoFinalizado event) -> {
-
             juego.ganador = juego.jugadores.get(event.getJugadorId());
-
-
-            Set<JugadorID> jugadores = null;
-
-            juego.jugadores.values().stream().forEach(Jugador ->{
-
-                if(Objects.isNull(Jugador)){
-                    throw new IllegalArgumentException("No se envio ningun jugador");
-                }
-
-                jugadores.add(Jugador.identity());
-
-            });
-
-            new HistoricoCreado(jugadores, juego.identity());
-
         });
 
     }

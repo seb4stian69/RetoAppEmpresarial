@@ -30,7 +30,7 @@ public class IniciarJuegoUseCase extends UseCaseForCommand<IniciarJuegoCommand>{
                     var ronda = new Ronda(1, jugadoresId);
 
                     juego.crearTablero();
-                    juego.crearRonda(ronda, 80);
+                    juego.crearRonda(ronda, 15);
 
                     return juego.getUncommittedChanges();
                 }));

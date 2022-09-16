@@ -10,7 +10,6 @@ import com.sofka.marvelgame.values.JuegoID;
 import com.sofka.marvelgame.values.JugadorID;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeMap;
@@ -40,7 +39,7 @@ public class FinalizarRondaUseCase extends UseCaseForCommand<FinalizarRondaComma
                                 .reduce(Integer::sum)
                                 .ifPresent(puntos -> {
                                     partidaOrdenada.put(puntos, jugadorId.value());
-                                    cartasEnTablero.addAll(cartas);
+                                    cartasEnTablero.add(cartas.iterator().next()); // El cambio mas mrk de todos
                                 });
 
                     });

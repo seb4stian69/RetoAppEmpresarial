@@ -3,7 +3,7 @@
   <div class="header">
 
     <div class="DataGeneral">
-      <p>Ronda: {{dataGeneralBoard.ronda.numero}} | Jugadores: {{dataGeneralBoard.tablero.jugadores.length}}/5 | Tiempo: {{temporizador}}s</p>
+      <p>Ronda: {{numeroRonda}} | Jugadores: {{jugadoresTablero}}/5 | Tiempo: {{tiempo}}s</p>
     </div>
 
     <button *ngIf="playEnable" (click)="iniciarRonda()" > Iniciar </button>
@@ -12,46 +12,9 @@
 
   <div class="CartasPuestas" >
 
-    <div class="cartaTablero">
+    <div class="cartaTablero" *ngFor="let card of cartasDelTablero">
       <img src="../../../../assets/Image/board/cartaOculta.png" alt="cartaTablero">
     </div>
-
-    <div class="cartaTablero">
-      <img src="../../../../assets/Image/board/cartaOculta.png" alt="cartaTablero">
-    </div>
-
-    <div class="cartaTablero">
-      <img src="../../../../assets/Image/board/cartaOculta.png" alt="cartaTablero">
-    </div>
-
-    <div class="cartaTablero">
-      <img src="../../../../assets/Image/board/cartaOculta.png" alt="cartaTablero">
-    </div>
-
-    <div class="cartaTablero">
-      <img src="../../../../assets/Image/board/cartaOculta.png" alt="cartaTablero">
-    </div>
-
-    <div class="cartaTablero">
-      <img src="../../../../assets/Image/board/cartaOculta.png" alt="cartaTablero">
-    </div>
-
-    <div class="cartaTablero">
-      <img src="../../../../assets/Image/board/cartaOculta.png" alt="cartaTablero">
-    </div>
-
-    <div class="cartaTablero">
-      <img src="../../../../assets/Image/board/cartaOculta.png" alt="cartaTablero">
-    </div>
-
-    <div class="cartaTablero">
-      <img src="../../../../assets/Image/board/cartaOculta.png" alt="cartaTablero">
-    </div>
-
-    <div class="cartaTablero">
-      <img src="../../../../assets/Image/board/cartaOculta.png" alt="cartaTablero">
-    </div>
-
 
   </div>
 
@@ -61,9 +24,9 @@
 
   <div class="slider">
 
-    <div *ngFor="let carta of cartasCurrentUser" class="CartaMazo">
+    <div *ngFor="let carta of cartasDelJugador" class="CartaMazo">
       <img src="../../../../assets/cartasImages/{{carta.cartaId}}" alt="imagenMarvel">
-      <div class="ButtonMasPuntos"><button>Poner: {{carta.poder}}</button></div>
+      <div (click)="ponerCarta(carta.cartaId)" class="ButtonMasPuntos"><button>Poner: {{carta.poder}}</button></div>
     </div>
 
   </div>

@@ -1,5 +1,7 @@
 package org.example.cardgame.application.handle.usecase;
 
+import co.com.sofka.domain.generic.Identity;
+import com.sofka.marvelgame.commands.CrearRondaCommand;
 import org.example.cardgame.application.handle.IntegrationHandle;
 import com.sofka.marvelgame.events.RondaTerminada;
 import com.sofka.marvelgame.usecase.CrearRondaUseCase;
@@ -12,7 +14,6 @@ import java.util.stream.Collectors;
 
 @Configuration
 public class CrearRondaEventHandle {
-
     private final CrearRondaUseCase usecase;
 
     private final IntegrationHandle handle;
@@ -22,9 +23,19 @@ public class CrearRondaEventHandle {
         this.handle = handle;
     }
 
+
+    @Async
     @EventListener
     public void handleCrearRonda(RondaTerminada event) {
-        handle.apply(usecase.apply(Mono.just(event))).block();
+        var command = new CrearRondaCommand();
+        var jugadores = event.getJugadorIds()
+                .stream()
+                .map(Identity::value)
+                .collect(Collectors.toSet());
+        command.setJuegoId(event.aggregateRootId());
+        command.setTiempo(10);
+        command.setJugadores(jugadores);
+        handle.apply(usecase.apply(Mono.just(command))).block();
     }
 
 }
