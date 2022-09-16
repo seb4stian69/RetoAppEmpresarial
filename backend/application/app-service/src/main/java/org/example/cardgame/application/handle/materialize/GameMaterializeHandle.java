@@ -1,6 +1,8 @@
 package org.example.cardgame.application.handle.materialize;
 
+import co.com.sofka.domain.generic.Identity;
 import com.sofka.marvelgame.events.JuegoFinalizado;
+import com.sofka.marvelgame.events.TableroCreado;
 import org.springframework.context.annotation.Configuration;
 import co.com.sofka.domain.generic.DomainEvent;
 import com.sofka.marvelgame.events.JuegoCreado;
@@ -8,12 +10,13 @@ import com.sofka.marvelgame.events.JugadorAgregado;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
+import org.bson.Document;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
-
 import java.time.Instant;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 @Configuration
 public class GameMaterializeHandle {
@@ -40,6 +43,33 @@ public class GameMaterializeHandle {
     }
 
     @EventListener
+    public void tableroCreado(TableroCreado event){
+
+        var data = new Update();
+        var gameView = new Update();
+
+        gameView.set("iniciado", true);
+
+        var doucment = new Document();
+        var jugadores = event.getJugadorIds()
+                .stream().map(Identity::value)
+                .collect(Collectors.toList());
+
+        doucment.put("tableroId", event.getTableroId().value());
+        doucment.put("jugadores", jugadores);
+        doucment.put("habilitado", true);
+        doucment.put("cartas", new HashMap<>());
+        doucment.put("cantidadJugadores", event.getJugadorIds().size());
+
+        data.set("tablero", doucment);
+
+        template.updateFirst(getByAggregateId(event), gameView, "gameview").block();
+        template.updateFirst(getByAggregateId(event), data, COLLECTION_VIEW).block();
+
+
+    }
+
+    @EventListener
     public void handleJugadorAgregado(JugadorAgregado event) {
         var data = new Update();
         data.set("fecha", Instant.now());
@@ -54,7 +84,7 @@ public class GameMaterializeHandle {
         var data = new Update();
         data.set("finalizado", true);
         template.updateFirst(getFilterByAggregateId(event), data, COLLECTION_VIEW).block();
-        //data.set("ganador", "jugadores."+event.getJugadorId().value()+".alias", event.getAlias());
+        data.set("ganador."+event.getJugadorId().value()+".alias", event.getAlias());
     }
 
     private Query getFilterByAggregateId(DomainEvent event) {
@@ -63,4 +93,11 @@ public class GameMaterializeHandle {
         );
     }
 
+    private Query getByAggregateId(DomainEvent event) {
+        return new Query(
+                Criteria.where("_id").is(event.aggregateRootId())
+        );
+    }
+
 }
+

@@ -46,7 +46,8 @@ export class ListajuegosComponent implements OnInit {
   onClickIniciar(id:string, estaIniciado: boolean, uid:any){
 
     if(estaIniciado){
-      this.router.navigate(['/game/board'])
+      alert("Sera enviado al juego")
+      this.router.navigate([`/game/board/${id}`])
     }else{
       this.httpService.iniciarJuego(id).subscribe()
       console.log("Iniciando juego: " + id)
