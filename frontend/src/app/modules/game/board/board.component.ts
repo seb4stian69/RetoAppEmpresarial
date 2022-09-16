@@ -64,19 +64,19 @@ export class BoardComponent implements OnInit  {
 
         next: (event:any) => {
 
-          if(event.type != 'marvelgame.temporizadorCambiadoDelTablero'){
+          if(event.type != 'marvelgame.TiempoCambiadoDelTablero'){
             console.log(event)
           }
 
-          if (event.type === 'marvelgame.temporizadorCambiadoDelTablero') {
-            this.temporizador = event.temporizador;
+          if (event.type === 'marvelgame.TiempoCambiadoDelTablero') {
+            this.temporizador = event.tiempo;
           }
 
           if(event.type === 'marvelgame.RondaIniciada'){
             this.rondaIniciada = true;
-            this.temporizador = event.temporizador;
-            this.rondaActual=event.ronda.numero;
-            this.mazoJugadorActual=this.mazoJugadorActual;
+            this.temporizador = event.tiempo;
+            this.rondaActual = event.ronda.numero;
+            this.mazoJugadorActual = this.mazoJugadorActual;
           }
 
           if(event.type === 'marvelgame.CartaPuestaEnTablero'){
@@ -95,14 +95,14 @@ export class BoardComponent implements OnInit  {
           }
 
           if (event.type === 'marvelgame.RondaCreada') {
-            this.temporizador = event.temporizador;
-            this.jugadoresVivosRonda = event.ronda.jugadores.length
+            this.temporizador = event.tiempo;
+            this.cantidadJugadores = event.ronda.jugadores.length
             this.rondaActual=event.ronda.numero;
           }
 
           if(event.type === 'marvelgame.JuegoFinalizado') {
 
-            this.ganadorAlias = "Ganador:" + event.alias;
+            this.ganadorAlias = "Ganador: " + event.alias;
             this.ganador = true;
             this.ganadorRondaActual=event.alias;
 
@@ -134,11 +134,9 @@ export class BoardComponent implements OnInit  {
               alert("Eres el ganador de esta ronda")
 
             }else{
-              alert("Perdiste esta ronda")
+              alert("Perdiste la ronda")
             }
-        }
-
-      }
+      }}
 
     })
 
@@ -176,7 +174,7 @@ export class BoardComponent implements OnInit  {
   iniciarRonda(){
     this.websocket.conection(this.idJuego).subscribe(data => console.log(data));
     this.servicioJuego.iniciarRonda({
-      idJuego: this.idJuego,
+      juegoId: this.idJuego,
 
     }).subscribe();
 

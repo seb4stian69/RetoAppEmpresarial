@@ -39,7 +39,7 @@ public class FinalizarRondaUseCase extends UseCaseForCommand<FinalizarRondaComma
                                 .reduce(Integer::sum)
                                 .ifPresent(puntos -> {
                                     partidaOrdenada.put(puntos, jugadorId.value());
-                                    cartasEnTablero.add(cartas.iterator().next()); // El cambio mas mrk de todos
+                                    cartasEnTablero.add(cartas.iterator().next());
                                 });
 
                     });
