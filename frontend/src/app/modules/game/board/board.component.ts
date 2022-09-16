@@ -5,7 +5,7 @@ import { JuegoServiceService } from '../../../Services/juego.service';
 import { WebsocketService } from '../../../Services/websocket.service';
 import firebase from 'firebase/compat';
 import { Carta } from '../../../models/Shared/commands/TableroModel';
-import swal from'sweetalert2';
+// import swal from'sweetalert2';
 
 @Component({
   selector: 'app-board',
@@ -57,8 +57,11 @@ export class BoardComponent implements OnInit  {
     })
 
     this.ws.conection(this.juegoId).subscribe({
-
         next: (event:any) => {
+
+          if(event.type != 'marvelgame.TiempoCambiadoDelTablero'){
+            console.log(event)
+          }
 
           if (event.type === 'marvelgame.TiempoCambiadoDelTablero') {
             this.tiempo = event.tiempo;
@@ -93,16 +96,20 @@ export class BoardComponent implements OnInit  {
           }
 
           if(event.type === 'marvelgame.JuegoFinalizado') {
+
             this.ganadorAlias = "Ganador:" + event.alias;
             this.ganador = true;
             this.ganadorRonda=event.alias;
 
-            swal.fire('Ganador del juego', event.alias);
-              this.router.navigate(['listaJugadores']);
+            // swal.fire('Ganador del juego', event.alias);
+            // this.router.navigate(['listaJugadores']);
 
-              setTimeout(() => {
-                this.router.navigate(['/home']);
-              },600);
+            alert("Ganador: " + this.ganadorAlias)
+
+            setTimeout(() => {
+              this.router.navigate(['/game']);
+            },600);
+
           }
 
           if(event.type === 'marvelgame.RondaTerminada'){

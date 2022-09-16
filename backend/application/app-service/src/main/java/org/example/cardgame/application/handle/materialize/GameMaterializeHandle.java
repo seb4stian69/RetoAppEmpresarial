@@ -50,12 +50,10 @@ public class GameMaterializeHandle {
     }
 
     @EventListener
-    public void handleJuegoIniciado(Juego event)
-
-    @EventListener
     public void handleJuegoFinalizado(JuegoFinalizado event){
         var data = new Update();
         data.set("finalizado", true);
+        template.updateFirst(getFilterByAggregateId(event), data, COLLECTION_VIEW).block();
         //data.set("ganador", "jugadores."+event.getJugadorId().value()+".alias", event.getAlias());
     }
 
